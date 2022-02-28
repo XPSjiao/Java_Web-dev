@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面——可以更换验证码</title>
+    <style>
+        body{
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+<!--//把后端的地址拿到前面-->
+
+<a href="" id=""><img src="/code" alt="验证码">看不清楚换一张</a>
+<script>
+    window.onload=function (){
+        //1.获取图片对象
+        const img = document.getElementById("verifyCode");
+        //2.绑定点击事件
+        img.onclick =function () {
+            //加时间戳
+            const date = new Date().getTime();
+            img.src = "/code?"+date;
+
+
+        }
+    }
+</script>
+</body>
+</html>
