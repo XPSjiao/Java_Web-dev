@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax请求示例起步——原生的JS异步请求</title>
+</head>
+<body>
+<h1>
+    下方是服务器端返回的数据
+</h1>
+<hr><!--   水平线-->
+<h2 id="info">请求之前的内容</h2>
+<button id="btn">点击</button>
+<script>
+
+    //1.创建核心对象
+    // let  xHttp;
+    // if (window.XMLHttpRequest){
+    //     xHttp = new XMLHttpRequest();
+    // }else {
+    //     //for IE6
+    //     xHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    // }
+    // // //2.发送请求
+    // // xHttp.open("GET","http://localhost:80/ajaxServlet");
+    // // xHttp.send();
+    //
+    // //设置定时器发送请求
+    // setTimeout(fun(),5000)();
+    // function fun(){ //定义一个fun方法用于获取响应发送请求
+    //     //发送请求
+    //     xHttp.open("GET","http://localhost:80/ajaxServlet");
+    //     xHttp.send();
+    //
+    //     //获取响应
+    //     xHttp.onreadystatechange = function () {
+    //         if(this.readyState === 4 && this.status ===200){
+    //
+    //             //回调函数
+    //              document.getElementById("info").innerText = this.responseText;
+    //             // alert(this.responseText);
+    //         }
+    // }
+    // //3.获取响应
+    // xHttp.onreadystatechange = function () {
+    //     if(this.readyState === 4 && this.status ===200){
+    //         alert(this.responseText);
+    //     }
+
+        //按钮跳转
+        let btn = document.getElementById("btn");//通过ID"btn"获取到按钮
+        setTimeout("btn.onclick",3000)();
+        btn.onclick = function () { //点击按钮的时候调用方法
+            //1.创建核心对象
+            let xHttp;
+            if (window.XMLHttpRequest) {
+                xHttp = new XMLHttpRequest();
+            } else {
+                //for IE6
+                xHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //2.发送请求
+            xHttp.open("GET", "http://localhost:80/ajaxServlet");
+            xHttp.send();
+
+            //3.获取响应
+            xHttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+
+                    //回调函数
+                    document.getElementById("info").innerText = this.responseText;
+                    // alert(this.responseText);
+                }
+            }
+
+    }
+</script>
+</body>
+</html>
